@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Access class
+ * 
+ * [CHANGELOG]
+ * 2021-08-03 -> Class created
+ */
+
 class Access
 {
     /** List of Browsers */
