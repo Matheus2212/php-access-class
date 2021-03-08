@@ -83,7 +83,7 @@ class Access
         $this->access['browserVersion'] = $this->getBrowserVersion();
         $this->access['OS'] = $this->getOS();
         $this->access['robot'] = $this->getRobot();
-        $this->access['referer'] = $_SERVER['HTTP_REFERER'];
+        $this->access['referer'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "Direct";
         $this->access['time'] = time();
     }
 
