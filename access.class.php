@@ -4,7 +4,8 @@
  * Access class
  * 
  * [CHANGELOG]
- * 2021-08-03 -> Class created
+ * 2021-03-08 -> Class created
+ * 2021-03-11 -> Added getIP() method
  */
 
 class Access
@@ -85,8 +86,10 @@ class Access
         $this->access['robot'] = $this->getRobot();
         $this->access['referer'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "Direct";
         $this->access['time'] = time();
+        $this->access['ip'] = $this->getIP();
     }
 
+    /** Will get the browser */
     private function getBrowser()
     {
         foreach ($this->browsers as $regex => $name) {
@@ -97,12 +100,14 @@ class Access
         return "Unknown";
     }
 
+    /** Will get the browser's version */
     private function getBrowserVersion()
     {
         $data = explode("/", $_SERVER['HTTP_USER_AGENT']);
         return $data[count($data) - 1];
     }
 
+    /** Will get the system's OS */
     private function getOS()
     {
         foreach ($this->OS as $regex => $name) {
@@ -113,6 +118,7 @@ class Access
         return "Unknown";
     }
 
+    /** Will check if is a robot */
     private function getRobot()
     {
         foreach ($this->crawlers as $regex => $name) {
@@ -123,6 +129,13 @@ class Access
         return false;
     }
 
+    /** Will get the IP */
+    private function getIP()
+    {
+        return isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
+    }
+
+    /** Return an Array with the collected info */
     public function getInfo()
     {
         return $this->access;
