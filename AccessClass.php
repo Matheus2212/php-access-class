@@ -6,6 +6,7 @@
  * [CHANGELOG]
  * 2021-03-08 -> Class created
  * 2021-03-19 -> Improved return methods for unknows user agents - this can help to improve the info arrays
+ * 2022-09-25 -> Renamed class
  */
 
 class Access
